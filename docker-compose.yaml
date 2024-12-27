@@ -15,7 +15,7 @@ services:
       - NODE_ENV=development
     command: npm run dev
 test:
-      image: mcr.microsoft.com/playwright:v1.27.0-focal
+      image: mcr.microsoft.com/playwright:v1.28.0-focal
       depends_on:
         - app
       working_dir: /app
