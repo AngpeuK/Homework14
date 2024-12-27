@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build, Test, and Run Playwright Tests
 
 on:
   push:
@@ -9,8 +9,19 @@ on:
       - main
 
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: mcr.microsoft.com/playwright:v1.27.0-focal
+        options: --entrypoint /bin/bash
+        ports:
+          - 3000:3000
+        env:
+          NODE_ENV: development
+        volumes:
+          - .:/app
 
     steps:
       - name: Check out repository
@@ -25,13 +36,20 @@ jobs:
         run: npm ci
 
       - name: Set up Docker Compose
-        uses: hoverkraft-tech/compose-action@v2.0.1
+        uses: docker/setup-buildx-action@v2
         with:
-          compose-file: ./docker-compose.yaml
-          up-flags: -d
+          version: 'v0.8.0'
+
+      - name: Build and Start Containers
+        run: |
+          docker-compose -f docker-compose.yml up -d
+          docker-compose exec app npm install
 
       - name: Run homework 14 tests
         run: npx playwright test tests/hw-14-1-create-n-users.test.ts hw-14-2-get-users-by-id.test.ts hw-14-3-delete-users.test.ts
 
       - name: Run lesson tests
         run: npx playwright test tests/lesson-14-1-create-n-users.test.ts lesson-14-2-delete-n-users.test.ts lesson-14-3-delete-m-users-after-creating-n-users.test.ts
+
+      # - name: Run Playwright tests
+      #   run: npx playwright test
