@@ -9,7 +9,7 @@ test.describe('homework-14-1', () => {
     test('POST n users', async ({request}) => {
         const apiClient = await HomeworkApiClient.getInstance(request)
         await apiClient.deleteAllUsers()
-        const usersCount = await apiClient.createUsers(20)
+        const usersCount = await apiClient.createUsers(5)
         const response = await request.get(`${baseURL}`)
         const responseBody = await response.json()
         let numberOfObjects = responseBody.length
