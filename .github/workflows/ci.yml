@@ -14,7 +14,7 @@ jobs:
 
     services:
       docker:
-        image: mcr.microsoft.com/playwright:v1.27.0-focal
+        image: mcr.microsoft.com/playwright:v1.28.0-focal
         options: --entrypoint /bin/bash
         ports:
           - 3000:3000
