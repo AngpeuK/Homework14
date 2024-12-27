@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 import {HomeworkApiClient} from "../src/controllers/homework-api-client";
 
-let baseURL: string = 'http://localhost:3000/users'
+let baseURL: string = 'http://node_app:3000'
 
 
 test.describe('homework-14-1', () => {
