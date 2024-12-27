@@ -22,19 +22,19 @@ export class HomeworkApiClient {
     }
 
     async createUsers(users: number): Promise<number> {
-        for (let i = 0; i < users; i++) {
-            let success = false
-            let attempts = 0
-            while (!success && attempts < 20) {
-                const response = await this.request.post(baseURL)
-                if (response.status() >= 200 && response.status() < 300) {
-                    success = true
-                }
-                attempts++
+    for (let i = 0; i < users; i++) {
+        let success = false
+        let attempts = 0
+        while (!success) {
+            const response = await this.request.post(baseURL)
+            if (response.status() >= 200 && response.status() < 300) {
+                success = true
             }
+            attempts++
         }
-        return users
     }
+    return users
+}
 
     async deleteUsers(count: number): Promise<void> {
         const response = await this.request.get(`${baseURL}`)
