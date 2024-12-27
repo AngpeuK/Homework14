@@ -21,11 +21,19 @@ export class LessonApiClient {
     }
 
     async createUsers(users: number): Promise<number> {
-        for (let i = 0; i < users; i++) {
-            await this.request.post(baseURL)
+    for (let i = 0; i < users; i++) {
+        let success = false
+        let attempts = 0
+        while (!success) {
+            const response = await this.request.post(baseURL)
+            if (response.status() >= 200 && response.status() < 300) {
+                success = true
+            }
+            attempts++
         }
-        return users
     }
+    return users
+}
 
     async deleteUsers(): Promise<void> {
         const response = await this.request.get(`${baseURL}`)
