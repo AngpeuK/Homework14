@@ -43,13 +43,13 @@ jobs:
       - name: Set up Docker Compose
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
-            compose-file: /github/workspace/docker-compose.yaml
+            compose-file: /home/runner/work/Homework14/Homework14/docker-compose.yaml
             up-flags: -d
 
       - name: Build and Start Containers
         run: |
           docker-compose -f docker-compose.yml up -d
-          docker-compose exec app npm ci  # Убедитесь, что все зависимости установлены
+          docker-compose exec app npm ci
 
       - name: Show Docker container logs
         run: docker logs $(docker ps -q --filter "ancestor=mcr.microsoft.com/playwright:v1.28.0-focal")
