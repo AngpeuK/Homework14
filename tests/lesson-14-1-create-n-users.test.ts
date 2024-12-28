@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test'
 import {StatusCodes} from "http-status-codes"
 import {LessonApiClient} from "../src/controllers/lesson-api-client"
 
-let baseURL: string = 'http://node_app:3000'
+let baseURL: string = 'https://node_app:3000'
 
 
 test.describe('User management API', () => {
