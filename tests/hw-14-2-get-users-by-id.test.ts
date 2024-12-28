@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test'
-import {HomeworkApiClient} from "../src/controllers/homework-api-client";
+import {HomeworkApiClient2} from "../src/controllers/homework-api-client2"
 
 let baseURL: string = 'http://localhost:3000/users'
 
