@@ -27,7 +27,7 @@ export class HomeworkApiClient {
         const maxAttempts = 200
 
         while (attempts < maxAttempts) {
-            const response = await this.request.post(baseURL)
+            const response = await this.request.post(`${baseURL}`)
             if (response.status() >= 200 && response.status() < 300) {
                 break
             }
