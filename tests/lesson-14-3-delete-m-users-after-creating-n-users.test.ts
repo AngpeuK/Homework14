@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test'
 import {StatusCodes} from "http-status-codes"
-import {LessonApiClient} from "../src/controllers/lesson-api-client"
+import {LessonApiClient3} from "../src/controllers/lesson-api-client3"
 
 let baseURL: string = 'http://localhost:3000/users'
 
@@ -10,7 +10,7 @@ test.describe('User management API', () => {
 // Lesson 14-3
 //
     test('DELETE m users after creating n users', async ({request}) => {
-        const apiClient = await LessonApiClient.getInstance(request)
+        const apiClient = await LessonApiClient3.getInstance(request)
         await apiClient.deleteUsers()
         const usersCount = await apiClient.createUsers(10)
         let userIDs = []
