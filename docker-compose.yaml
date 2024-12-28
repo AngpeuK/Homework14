@@ -24,4 +24,4 @@ services:
       - .:/app
     entrypoint: ["npx", "playwright", "test"]
     environment:
-      - BASE_URL=http://node_app:3000
+      - BASE_URL=https://node_app:3000/users
