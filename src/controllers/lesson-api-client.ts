@@ -2,7 +2,7 @@ import {APIRequestContext} from 'playwright'
 import {expect} from "@playwright/test"
 import {StatusCodes} from "http-status-codes";
 
-let baseURL: string = 'https://node_app:3000'
+let baseURL: string = 'http://localhost:3000/users'
 
 export class LessonApiClient {
     static instance: LessonApiClient
@@ -21,22 +21,14 @@ export class LessonApiClient {
     }
 
     async createUsers(users: number): Promise<number> {
-    for (let i = 0; i < users; i++) {
-        let success = false
-        let attempts = 0
-        while (!success) {
-            const response = await this.request.post(baseURL)
-            if (response.status() >= 200 && response.status() < 300) {
-                success = true
-            }
-            attempts++
+        for (let i = 0; i < users; i++) {
+            await this.request.post(baseURL)
         }
+        return users
     }
-    return users
-}
 
     async deleteUsers(): Promise<void> {
-        const response = await this.request.get(baseURL)
+        const response = await this.request.get(`${baseURL}`)
         const responseBody = await response.json()
         const numberOfObjects = responseBody.length
         let userIDs = [];
