@@ -1,5 +1,5 @@
 import {test} from '@playwright/test'
-import {HomeworkApiClient} from "../src/controllers/homework-api-client";
+import {HomeworkApiClient3} from "../src/controllers/homework-api-client3"
 
 test.describe('homework-14-3', () => {
         test('DELETE users', async ({request}) => {
