@@ -2,13 +2,13 @@ import {test, expect} from '@playwright/test'
 import {StatusCodes} from "http-status-codes"
 import {LessonApiClient} from "../src/controllers/lesson-api-client"
 
-let baseURL: string = 'https://node_app:3000'
+let baseURL: string = 'http://localhost:3000/users'
 
 
 test.describe('User management API', () => {
     test.beforeEach(async ({request}) => {
         // get all users
-        let response = await request.get(baseURL)
+        let response = await request.get(`${baseURL}`)
         let responseBody = await response.json()
         // get the number of objects in the array returned
         let numberOfObjects = responseBody.length
@@ -33,7 +33,7 @@ test.describe('User management API', () => {
         }
 
         // verify that all users are deleted
-        let responseAfterDelete = await request.get(baseURL)
+        let responseAfterDelete = await request.get(`${baseURL}`)
         expect(responseAfterDelete.status()).toBe(StatusCodes.OK)
         let responseBodyEmpty = await responseAfterDelete.text()
         // validate that the response is an empty array
