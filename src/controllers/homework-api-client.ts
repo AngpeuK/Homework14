@@ -28,6 +28,15 @@ export class HomeworkApiClient {
 
         while (attempts < maxAttempts) {
             const response = await this.request.post(baseURL)
+            if (!response.ok) {
+                console.error(`Ошибка: ${response.status} - ${response.statusText}`);
+                const errorBody = await response.text()  // Получить текстовый ответ для анализа
+                console.error(errorBody)
+                return
+            }
+            const responseBody = await response.json()
+
+            
             if (response.status() >= 200 && response.status() < 300) {
                 break
             }
