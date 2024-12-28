@@ -23,10 +23,13 @@ export class HomeworkApiClient {
 
     async createUsers(users: number): Promise<number> {
         for (let i = 0; i < users; i++) {
-            await this.request.post(baseURL)
+            let createUsers = await this.request.post(baseURL)
+            expect.soft(createUsers.status()).toBe(StatusCodes.CREATED)
+            console.log('createUsers status is: ', createUsers.statusText())
         }
         return users
     }
+    
     async deleteUsers(count: number): Promise<void> {
         const response = await this.request.get(`${baseURL}`)
         const responseBody = await response.json()
