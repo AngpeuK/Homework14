@@ -23,9 +23,7 @@ export class HomeworkApiClient {
 
     async createUsers(users: number): Promise<number> {
         for (let i = 0; i < users; i++) {
-            createUsers = await this.request.post(baseURL)
-            createdUsers = await createUsers.json()
-            console.log(createdUsers)
+            await this.request.post(baseURL)
         }
         return users
     }
