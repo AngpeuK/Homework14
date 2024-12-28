@@ -27,7 +27,7 @@ export class HomeworkApiClient {
         const maxAttempts = 200
 
         while (attempts < maxAttempts) {
-            const response = await this.request.post(`${baseURL}`)
+            const response = await this.request.post(baseURL)
             if (response.status() >= 200 && response.status() < 300) {
                 break
             }
@@ -39,7 +39,7 @@ export class HomeworkApiClient {
 }
 
     async deleteUsers(count: number): Promise<void> {
-        const response = await this.request.get(`${baseURL}`)
+        const response = await this.request.get(baseURL)
         const responseBody = await response.json()
         const numberOfObjects = responseBody.length
         const usersToDelete = Math.min(count, numberOfObjects)
@@ -56,7 +56,7 @@ export class HomeworkApiClient {
     }
 
     async deleteAllUsers(): Promise<void> {
-        const response = await this.request.get(`${baseURL}`)
+        const response = await this.request.get(baseURL)
         const responseBody = await response.json()
         const numberOfObjects = responseBody.length
         let userIDs = [];
@@ -71,7 +71,7 @@ export class HomeworkApiClient {
     }
 
     async checkAllUsersDeleted(): Promise<void> {
-        const response = await this.request.get(`${baseURL}`)
+        const response = await this.request.get(baseURL)
         expect(response.status()).toBe(StatusCodes.OK)
         const responseBody = await response.text()
         expect(responseBody).toBe('[]');
@@ -79,7 +79,7 @@ export class HomeworkApiClient {
 
 
     async getUserDataByIndex(index: number): Promise<any> {
-        const response = await this.request.get(`${baseURL}`)
+        const response = await this.request.get(baseURL)
         const responseBody = await response.json()
 
         const users: any[] = []
