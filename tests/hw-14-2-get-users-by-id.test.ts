@@ -6,6 +6,7 @@ let baseURL: string = 'http://localhost:3000/users'
 test.describe('homework-14-2', () => {
     test('Get user data by ID (using index)', async ({request}) => {
         const apiClient = await HomeworkApiClient.getInstance(request)
+        await apiClient.deleteAllUsers()
         const usersCount = await apiClient.createUsers(20)
         const response = await request.get(`${baseURL}`)
         const responseBody = await response.json()
