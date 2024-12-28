@@ -2,7 +2,7 @@ import {APIRequestContext} from 'playwright'
 import {expect} from "@playwright/test"
 import {StatusCodes} from "http-status-codes";
 
-let baseURL: string = 'http://node_app:3000/users'
+let baseURL: string = 'https://node_app:3000'
 
 export class HomeworkApiClient {
     static instance: HomeworkApiClient
