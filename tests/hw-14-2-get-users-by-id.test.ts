@@ -1,11 +1,16 @@
 import {test, expect} from '@playwright/test'
 import {HomeworkApiClient} from "../src/controllers/homework-api-client";
 
+let baseURL: string = 'http://localhost:3000/users'
 
 test.describe('homework-14-2', () => {
     test('Get user data by ID (using index)', async ({request}) => {
         const apiClient = await HomeworkApiClient.getInstance(request)
-        await apiClient.createUsers(20)
+        const usersCount = await apiClient.createUsers(20)
+        const response = await request.get(`${baseURL}`)
+        const responseBody = await response.json()
+        let numberOfObjects = responseBody.length
+        expect(numberOfObjects).toBe(usersCount)
         const userData = await apiClient.getUserDataByIndex(2)
 
         if (userData) {
