@@ -25,7 +25,7 @@ export class LessonApiClient {
         let success = false
         let attempts = 0
         while (!success) {
-            const response = await this.request.post(`${baseURL}`)
+            const response = await this.request.post(baseURL)
             if (response.status() >= 200 && response.status() < 300) {
                 success = true
             }
@@ -36,7 +36,7 @@ export class LessonApiClient {
 }
 
     async deleteUsers(): Promise<void> {
-        const response = await this.request.get(`${baseURL}`)
+        const response = await this.request.get(baseURL)
         const responseBody = await response.json()
         const numberOfObjects = responseBody.length
         let userIDs = [];
