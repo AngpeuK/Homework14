@@ -25,7 +25,7 @@ export class LessonApiClient {
         let success = false
         let attempts = 0
         while (!success) {
-            const response = await this.request.post(baseURL)
+            const response = await this.request.post(`${baseURL}`)
             if (response.status() >= 200 && response.status() < 300) {
                 success = true
             }
