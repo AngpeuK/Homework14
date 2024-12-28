@@ -14,7 +14,7 @@ test.describe('User management API', () => {
         await apiClient.deleteUsers()
         const usersCount = await apiClient.createUsers(1)
         let userIDs = []
-        const response = await request.get(`${baseURL}`)
+        const response = await request.get(baseURL)
         const responseBody = await response.json()
         // get the number of objects in the array returned
         const numberOfObjects = responseBody.length
@@ -31,7 +31,7 @@ test.describe('User management API', () => {
             // validate the response status code
             expect.soft(response.status()).toBe(StatusCodes.OK)
         }
-        const expectResponse = await request.get(`${baseURL}`)
+        const expectResponse = await request.get(baseURL)
         const expectResponseBody = await expectResponse.json()
         expect(expectResponseBody).toStrictEqual([])
         await apiClient.deleteUsers()
